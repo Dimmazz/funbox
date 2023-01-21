@@ -5,6 +5,7 @@ const Card = ({ card }) => {
 
   const [statusCard, setStatusCard] = useState(card.status ? card.status : 'default')
   const [mouseOnCard, setMouseOnCard] = useState(false)
+  const [isCliked, setIsClicked] = useState(false)
 
   const amountText = (amount) => {
     if (amount >= 5) {
@@ -35,11 +36,11 @@ const Card = ({ card }) => {
       case 'default':
         return defaultLettering
         break;
-      
+
       case 'selected':
         return card.lettering
         break;
-    
+
       case 'disabled':
         return `Печалька, ${card.taste} закончился.`
         break;
@@ -53,21 +54,28 @@ const Card = ({ card }) => {
     <div
       className="eat__card"
       onClick={(_e) => {
-        switch (statusCard) {
-          case 'default':
-            setStatusCard('selected')
-            break
-
-          case 'selected':
-            setStatusCard('default')
-            break
-
-          case 'disabled':
-            break
-        }
+        setIsClicked(true)
       }}
       onMouseEnter={(_e) => setMouseOnCard(true)}
-      onMouseLeave={(_e) => setMouseOnCard(false)}
+      onMouseLeave={(_e) => {
+        setMouseOnCard(false)
+
+        if (isCliked) {
+          setIsClicked(false)
+          switch (statusCard) {
+            case 'default':
+              setStatusCard('selected')
+              break
+
+            case 'selected':
+              setStatusCard('default')
+              break
+
+            case 'disabled':
+              break
+          }
+        }
+      }}
     >
       <div className={`card__inner ${statusCard === 'default' ? ' ' : `card__inner--${statusCard}`}`}>
         <h4 className="card__subtitle" title={card.subtitle}>
@@ -86,7 +94,7 @@ const Card = ({ card }) => {
             <span className='desc__span' title={`${card.amount} ${amountText(card.amount)}`}>{String(card.amount).split('', 2)}</span> {amountText(card.amount)}
           </div>
           <div className="card__gift" title={card.giftValue}>
-            <span className='desc__span'>{card.giftValue > 1 ? `${String(card.giftValue).split('', 1) } ` : ''}</span>
+            <span className='desc__span'>{card.giftValue > 1 ? `${String(card.giftValue).split('', 1)} ` : ''}</span>
             {card.gift}
           </div>
         </div>
