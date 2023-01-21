@@ -1,0 +1,533 @@
+@import './vars';
+
+
+html {
+  box-sizing: border-box;
+  font-weight: 400;
+  text-decoration: none;
+  overflow-x: hidden;
+
+  font-family: $font-main;
+  font-size: $fontsz-main;
+
+  color: $color-main;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-decoration: inherit;
+  color: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #00000000;
+  transition: border .2s ease-in,
+    color .2s ease-in;
+
+  &:hover {
+    color: $color-main;
+
+    border-bottom: 1px solid #000;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.view {
+  display: block !important;
+}
+
+.flex {
+  display: flex !important;
+}
+
+// reset texts tag
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 14px;
+}
+
+// Custom classes
+.container {
+  width: 80%;
+  max-width: 1171px;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+
+  @media (max-width: 568px) {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.btn {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+
+  white-space: nowrap;
+  text-transform: uppercase;
+
+  padding: 12px 28px;
+
+  color: $color-main;
+  border: 1px solid $color-main;
+  box-shadow: 2px 2px 8px 0px $color-primary;
+
+  transition: box-shadow .3s ease-in,
+    border .2s ease-in,
+    color .2s ease-in;
+
+  &:hover {
+    color: $color-primary;
+
+    border: 1px solid $color-primary;
+    box-shadow: 2px 2px 8px 0px rgba($color: $color-primary, $alpha: 0.5);
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+    padding: 10px 22px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+.title {
+  font-family: $font-second;
+  font-size: $fontsz-title;
+  text-align: center;
+  text-shadow: 0px 1px 1px #000000;
+
+  @media (max-width: $screen-tablet) {
+    font-size: $fontsz-title-small;
+  }
+}
+
+.bluedot {
+  color: $color-primary;
+
+  transition: color .2s ease-in;
+
+  &:hover {
+    color: $color-hover;
+  }
+}
+
+// .main {}
+
+.eat {
+  padding: 36px 0 70px;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 5e-05) 49.88%, rgba(0, 0, 0, 0.5) 100%);
+
+  position: relative;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: -1;
+
+    background: url('../assets/img/bg.webp');
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (-moz-min-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 3/2),
+    only screen and (min-device-pixel-ratio: 1.5) {
+      background-image: url("../assets/img/bg@2x.webp");
+    }
+  }
+}
+
+.eat__inner {
+  padding-top: 25px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: $screen-laptop) {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.eat__card {
+  margin: 0 40px;
+  width: 320px;
+  height: 480px;
+
+
+  @media (max-width: $screen-laptop) {
+    margin: 30px 40px;
+  }
+
+  @media (max-width: $screen-tablet) {
+    width: 240px;
+    height: 360px;
+  }
+}
+
+.card__inner {
+  padding: 20px 50px;
+  width: 100%;
+  height: 100%;
+
+  color: $color-second;
+  background: $color-bg;
+  clip-path: polygon(100% 0%, 40px 0%, 0% 40px, 0% 100%, 100% 100%);
+
+  border: 4px solid $color-primary;
+  border-radius: 12px;
+
+  position: relative;
+
+  margin-bottom: 15px;
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: border-color .2s ease-in;
+
+  &:hover {
+    border-color: $color-hover;
+    background-color: $color-bg-second;
+
+    .card__weight {
+      background-color: $color-hover;
+    }
+
+    &::before {
+      background-color: $color-hover;
+    }
+  }
+
+  &::before {
+    content: "";
+    width: 4px;
+    height: 100%;
+
+    background: $color-primary;
+
+    transform: rotate(45deg) translate(-144px, -4px);
+
+    transition: background-color .2s ease-in;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    background-image: url("../assets/img/cat.webp");
+    background-repeat: no-repeat;
+    background-position: 0 bottom;
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (-moz-min-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 3/2),
+    only screen and (min-device-pixel-ratio: 1.5) {
+      background-image: url("../assets/img/cat@2x.webp");
+    }
+  }
+
+  @media (max-width: $screen-tablet) {
+    padding: 20px 30px;
+    background-position: -40px 200px;
+
+    &::before {
+      transform: rotate(45deg) translate(-101px, -4px);
+    }
+  }
+}
+
+.card__inner--selected {
+  border-color: $color-selected;
+  background-color: $color-bg-second;
+
+  &:hover {
+    border-color: $color-selected-hover;
+
+    .card__weight {
+      background-color: $color-selected-hover;
+    }
+
+    &::before {
+      background-color: $color-selected-hover;
+    }
+  }
+
+  &::before {
+    background-color: $color-selected;
+  }
+}
+
+.card__inner--disabled {
+  border-color: $color-disabled;
+  cursor: not-allowed;
+
+  *,
+  &::after {
+    opacity: .5;
+  }
+
+  &:hover {
+    border-color: $color-disabled;
+    background-color: $color-bg;
+
+    .card__weight {
+      background-color: $color-disabled;
+    }
+
+    &::before {
+      background-color: $color-disabled;
+    }
+  }
+
+  &::before {
+    background-color: $color-disabled;
+  }
+}
+
+
+.card__subtitle {
+  color: $color-gray;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @media (max-width: $screen-tablet) {
+    font-size: $fontsz-main-small;
+  }
+}
+
+.subtitle-enter {
+  overflow: 0.01;
+}
+
+.subtitle-enter.subtitle-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.subtitle-leave {
+  opacity: 1;
+}
+
+.subtitle-leave.subtitle-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.card__selected-hover {
+  color: $color-selected-hover-text;
+}
+
+.card__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: $fontsz-card-title;
+  // line-height: 50%;
+
+  color: $color-second;
+
+  @media (max-width: $screen-tablet) {
+    font-size: $fontsz-card-title-small;
+  }
+}
+
+.card__taste {
+  display: inline-block;
+  font-size: $fontsz-subtitle-small;
+  font-weight: 700;
+  padding-bottom: 15px;
+
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @media (max-width: $screen-tablet) {
+    font-size: $fontsz-subtitle-small;
+  }
+}
+
+.card__desc {
+  color: $color-gray;
+  font-size: $fontsz-main;
+
+  @media (max-width: $screen-tablet) {
+    font-size: $fontsz-main-small;
+  }
+}
+
+.desc__span {
+  font-weight: 700;
+
+  max-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// .card__amount {}
+
+// .card__gift {}
+
+.card__weight {
+  padding-top: 2px;
+  color: $color-main;
+  user-select: none;
+
+  overflow: hidden;
+  white-space: nowrap;
+  // text-overflow: ellipsis;
+
+  font-family: $font-main;
+  font-size: $fontsz-weight;
+
+  height: 80px;
+  width: 80px;
+
+  background-color: $color-primary;
+  border-radius: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+
+  transition: background-color .2s ease-in;
+
+  @media (max-width: $screen-tablet) {
+    font-size: $fontsz-weight-small;
+    height: 65px;
+    width: 65px;
+  }
+}
+
+.card__weight--selected {
+  background-color: $color-selected;
+}
+
+.card__weight--disabled {
+  background-color: $color-disabled;
+}
+
+.weight__unit {
+  font-size: 21px;
+
+  @media (max-width: $screen-tablet) {
+    font-size: 14px;
+  }
+}
+
+.eat__lettering {
+  width: 100%;
+
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:hover .lettering__span {
+    color: $color-hover;
+    text-decoration-color: $color-hover;
+  }
+
+  &:hover .lettering__span--disabled {
+    color: $color-disabled;
+    text-decoration-color: $color-disabled;
+  }
+}
+
+.eat__lettering--disabled {
+  color: #FFFF66;
+  cursor: default;
+}
+
+.lettering__span {
+  color: $color-primary;
+  text-decoration: 1px underline dashed $color-primary;
+
+  transition: color .2s ease-in,
+    text-decoration-color .2s ease-in;
+}
+
+
+// FONTS 
+
+@font-face {
+  font-family: 'Exo';
+  src: url("../assets/fonts/Exo2.0-Thin.otf") format('opentype');
+  font-weight: 100;
+}
